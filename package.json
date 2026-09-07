@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "build": "tsup",
-    "start": "node dist/src/server.js",
+    "build": "tsup src/server.ts --out-dir dist",
+    "start": "node dist/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "stripe:webhook": "stripe listen --forward-to localhost:5000/api/v!/webhook",
     "format:check": "npx @biomejs/biome format ./src",
@@ -36,10 +36,12 @@
     "multer": "^2.2.0",
     "node-cron": "^4.6.0",
     "nodemailer": "^9.0.5",
+    "opencode-ai": "^1.18.29",
     "pdfkit": "^0.20.1",
     "pg": "^8.23.0",
     "redis": "^6.2.0",
     "stripe": "^22.6.1",
+    "tsup": "^8.5.1",
     "zod": "^4.4.3"
   },
   "devDependencies": {
