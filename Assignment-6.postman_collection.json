@@ -1,0 +1,670 @@
+{
+  "info": {
+    "_postman_id": "fd97e64f-1c72-45d3-8c7b-4979deaaee1c",
+    "name": "Assignment-6",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "49265770",
+    "_collection_link": "https://go.postman.co/collection/49265770-fd97e64f-1c72-45d3-8c7b-4979deaaee1c?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "User Register",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Main Admin \",\r\n  \"email\": \"mainadmin@gmail.com\",\r\n  \"password\": \"MainAdmin123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/v1/auth/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "User Login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n   \"email\": \"admin@courier.com\",\r\n  \"password\": \"********\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/v1/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Area",
+      "item": [
+        {
+          "name": "Create Area",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMjliOGI4LWYzNDUtNDYxYi05MjI3LTk5MWI2ZjIwNDYzYiIsImVtYWlsIjoiYWRtaW5AY291cmllci5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODg3MDQ2MDQsImV4cCI6MTc4OTU2ODYwNH0.X8PWTEQmv0O-uKIPW4aFZh3yt3zIoLibw0KVlxy_dOc",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Uttara\",\r\n  \"code\": \"UTR-03\",\r\n  \"district\": \"Dhaka\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/v1/areas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "v1",
+                "areas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Areas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/v1/areas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "v1",
+                "areas"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Single Area",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMjliOGI4LWYzNDUtNDYxYi05MjI3LTk5MWI2ZjIwNDYzYiIsImVtYWlsIjoiYWRtaW5AY291cmllci5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODg3MDQ2MDQsImV4cCI6MTc4OTU2ODYwNH0.X8PWTEQmv0O-uKIPW4aFZh3yt3zIoLibw0KVlxy_dOc",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Uttara\",\r\n  \"code\": \"UTR-03\",\r\n  \"district\": \"Dhaka\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/v1/areas/39990034-9ba0-4803-808f-ef216856103c",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "v1",
+                "areas",
+                "39990034-9ba0-4803-808f-ef216856103c"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Area",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMjliOGI4LWYzNDUtNDYxYi05MjI3LTk5MWI2ZjIwNDYzYiIsImVtYWlsIjoiYWRtaW5AY291cmllci5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODg3MDQ2MDQsImV4cCI6MTc4OTU2ODYwNH0.X8PWTEQmv0O-uKIPW4aFZh3yt3zIoLibw0KVlxy_dOc",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"district\": \"Dhaka North\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/v1/areas/ca91146c-1077-4223-8a16-ac4dc2f927cd",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "v1",
+                "areas",
+                "ca91146c-1077-4223-8a16-ac4dc2f927cd"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Get All Users",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        },
+        {
+          "name": "Get Single User",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        },
+        {
+          "name": "Update User",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Schedule",
+      "item": [
+        {
+          "name": "Create Schedule",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMjliOGI4LWYzNDUtNDYxYi05MjI3LTk5MWI2ZjIwNDYzYiIsImVtYWlsIjoiYWRtaW5AY291cmllci5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODg3MDQ2MDQsImV4cCI6MTc4OTU2ODYwNH0.X8PWTEQmv0O-uKIPW4aFZh3yt3zIoLibw0KVlxy_dOc",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"areaId\": \"ca91146c-1077-4223-8a16-ac4dc2f927cd\",\r\n  \"startTime\": \"2026-09-07T10:00:00.000Z\",\r\n  \"endTime\": \"2026-09-07T11:00:00.000Z\",\r\n  \"date\": \"2026-09-07T00:00:00.000Z\",\r\n  \"reason\": \"Grid Maintenance\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/v1/schedules",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "v1",
+                "schedules"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Schedules",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/v1/schedules",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "v1",
+                "schedules"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get single schedule",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMjliOGI4LWYzNDUtNDYxYi05MjI3LTk5MWI2ZjIwNDYzYiIsImVtYWlsIjoiYWRtaW5AY291cmllci5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODg3MDQ2MDQsImV4cCI6MTc4OTU2ODYwNH0.X8PWTEQmv0O-uKIPW4aFZh3yt3zIoLibw0KVlxy_dOc",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"areaId\": \"ca91146c-1077-4223-8a16-ac4dc2f927cd\",\r\n  \"startTime\": \"2026-09-07T10:00:00.000Z\",\r\n  \"endTime\": \"2026-09-07T11:00:00.000Z\",\r\n  \"date\": \"2026-09-07T00:00:00.000Z\",\r\n  \"reason\": \"Grid Maintenance\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/v1/schedules/1d2778f3-917a-4b89-9c22-711700eb8b38",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "v1",
+                "schedules",
+                "1d2778f3-917a-4b89-9c22-711700eb8b38"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update schedule",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNjZTI0NzJhLTIxYjUtNDllYS04YzUwLTZjNjY1YjMyYjQ1NiIsImVtYWlsIjoib3BlcmF0b3JAZ21haWwuY29tIiwicm9sZSI6Ik9QRVJBVE9SIiwiaWF0IjoxNzg4NzU2NzU1LCJleHAiOjE3ODk2MjA3NTV9.0dlq1Rvg3Ro71BSPLc9Ips3XZkN6ISoby_il0SaAPE8",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"startTime\": \"2026-09-07T16:00:00Z\",\r\n  \"endTime\": \"2026-09-07T17:00:00Z\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/v1/schedules/1d2778f3-917a-4b89-9c22-711700eb8b38",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "v1",
+                "schedules",
+                "1d2778f3-917a-4b89-9c22-711700eb8b38"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete schedule",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMjliOGI4LWYzNDUtNDYxYi05MjI3LTk5MWI2ZjIwNDYzYiIsImVtYWlsIjoiYWRtaW5AY291cmllci5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODg3NzgyMzEsImV4cCI6MTc4OTY0MjIzMX0.g36XAFmKaNTW6ydMqgyPvaaw4RWd2JWMu-zJeLwjJls",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/v1/schedules/1d2778f3-917a-4b89-9c22-711700eb8b38",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "v1",
+                "schedules",
+                "1d2778f3-917a-4b89-9c22-711700eb8b38"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Complaint",
+      "item": [
+        {
+          "name": "Create Complaint",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQzYzU2YTAwLWE3YzItNGNjZi1hOThhLTJkNjU1MDQ0YWQ4NyIsImVtYWlsIjoicmFzaGlkYUBleGFtcGxlLmNvbSIsInJvbGUiOiJDT05TVU1FUiIsImlhdCI6MTc4ODcwODIyNywiZXhwIjoxNzg5NTcyMjI3fQ.Kh34B4jDyaP6Rs9ld5GaL4AENzinGFvRtErIuQA7_a0",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"subject\": \"Unscheduled Power Outage\",\r\n  \"description\": \"Electricity has been out for over 2 hours without prior notice.\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/v1/complaints",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "v1",
+                "complaints"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Complaints",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Payment",
+      "item": [
+        {
+          "name": "Create Checkout Session",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQzYzU2YTAwLWE3YzItNGNjZi1hOThhLTJkNjU1MDQ0YWQ4NyIsImVtYWlsIjoicmFzaGlkYUBleGFtcGxlLmNvbSIsInJvbGUiOiJDT05TVU1FUiIsImlhdCI6MTc4ODcxNDQ4MCwiZXhwIjoxNzg5NTc4NDgwfQ.fznHp1vErVog_QxJoZC5tE0q7-qUZCWTOAkVxAlWB54",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"amount\": 100\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/v1/payments/create-checkout-session",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "v1",
+                "payments",
+                "create-checkout-session"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create-Payment",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjljYmNiZDYxLTA2M2QtNDYxOC04Y2VlLTliOGI1NDg5MTUwZiIsImVtYWlsIjoiY29uc3VtZXIyQGdtYWlsLmNvbSIsInJvbGUiOiJDT05TVU1FUiIsImlhdCI6MTc4ODc1MzM0NywiZXhwIjoxNzg5NjE3MzQ3fQ.-RObOGnttRG_aK1yE7oQo0Bqa6c3Fgozgs36_CedKbI",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"amount\": 100,\r\n  \"trxId\": \"cs_test_a10bhrblkFLC0Fk8IIJeqduwLeHNTgEUeKPIkFB0gUvBLWPId27LINleMe\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/v1/payments",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "v1",
+                "payments"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get all payment",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMjliOGI4LWYzNDUtNDYxYi05MjI3LTk5MWI2ZjIwNDYzYiIsImVtYWlsIjoiYWRtaW5AY291cmllci5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODg3MTY1OTgsImV4cCI6MTc4OTU4MDU5OH0.Hh9REYmStFq1-81TxnDTn9dE5efyIjAQ0mBGfCPm97I",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/v1/payments",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "v1",
+                "payments"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "my-payments",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQzYzU2YTAwLWE3YzItNGNjZi1hOThhLTJkNjU1MDQ0YWQ4NyIsImVtYWlsIjoicmFzaGlkYUBleGFtcGxlLmNvbSIsInJvbGUiOiJDT05TVU1FUiIsImlhdCI6MTc4ODcxOTY3MiwiZXhwIjoxNzg5NTgzNjcyfQ.g7ucBMLUGsaSVibRbjfnANd7P3harck_1OPwN31NWXo",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/v1/payments/my-payments",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "v1",
+                "payments",
+                "my-payments"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Stripe Webhook Listener",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"type\": \"checkout.session.completed\",\r\n  \"data\": {\r\n    \"object\": {\r\n      \"id\": \"cs_test_a10bhrblkFLC0Fk8IIJeqduwLeHNTgEUeKPIkFB0gUvBLWPId27LINleMe\",\r\n      \"client_reference_id\": \"9f4209a3-9cc7-4b9a-a486-e6cf038f048e\",\r\n      \"amount_total\": 5000\r\n    }\r\n  }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/v1/payments/webhook",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "v1",
+                "payments",
+                "webhook"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
