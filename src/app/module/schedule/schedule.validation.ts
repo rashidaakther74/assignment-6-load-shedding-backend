@@ -6,6 +6,7 @@ const createScheduleValidationSchema = z.object({
         date: z.string({ message: 'Date is required' }).min(1, 'Date cannot be empty'),
         startTime: z.string({ message: 'Start time is required' }).min(1, 'Start time cannot be empty'),
         endTime: z.string({ message: 'End time is required' }).min(1, 'End time cannot be empty'),
+        reason: z.string().optional(),
     }),
 });
 
@@ -15,6 +16,7 @@ const updateScheduleValidationSchema = z.object({
         date: z.string().optional(),
         startTime: z.string().optional(),
         endTime: z.string().optional(),
+        reason: z.string().optional(),
     }),
 });
 
