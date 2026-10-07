@@ -76,9 +76,48 @@ const deleteComplaint = async (req: Request, res: Response) => {
     }
 };
 
+const getMyComplaints = async (req: CustomRequest, res: Response) => {
+    try {
+        const userId = req.user?.id;
+        const result = await ComplaintService.getMyComplaintsFromDB(userId as string);
+        res.status(200).json({
+            success: true,
+            message: "My complaints fetched successfully!",
+            data: result,
+        });
+    } catch (err: any) {
+        res.status(400).json({
+            success: false,
+            message: err.message || "Failed to fetch my complaints",
+            error: err,
+        });
+    }
+};
+
+const deleteMyComplaint = async (req: CustomRequest, res: Response) => {
+    try {
+        const userId = req.user?.id;
+        const { id } = req.params;
+        const result = await ComplaintService.deleteMyComplaintFromDB(id as string, userId as string);
+        res.status(200).json({
+            success: true,
+            message: "Complaint deleted successfully!",
+            data: result,
+        });
+    } catch (err: any) {
+        res.status(400).json({
+            success: false,
+            message: err.message || "Failed to delete complaint",
+            error: err,
+        });
+    }
+};
+
 export const ComplaintController = {
     createComplaint,
     getAllComplaints,
+    getMyComplaints,
     updateComplaint,
     deleteComplaint,
+    deleteMyComplaint,
 };

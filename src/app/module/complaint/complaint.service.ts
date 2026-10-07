@@ -27,9 +27,24 @@ const deleteComplaintFromDB = async (id: string) => {
     });
 };
 
+const deleteMyComplaintFromDB = async (id: string, userId: string) => {
+    return await prisma.complaint.delete({
+        where: { id, userId },
+    });
+};
+
+const getMyComplaintsFromDB = async (userId: string) => {
+    return await prisma.complaint.findMany({
+        where: { userId },
+        orderBy: { createdAt: "desc" },
+    });
+};
+
 export const ComplaintService = {
     createComplaintIntoDB,
     getAllComplaintsFromDB,
+    getMyComplaintsFromDB,
     updateComplaintInDB,
     deleteComplaintFromDB,
+    deleteMyComplaintFromDB,
 };
