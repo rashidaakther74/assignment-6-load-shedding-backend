@@ -9,14 +9,15 @@ export interface CustomRequest extends Request {
 const auth = (...requiredRoles: string[]) => {
   return async (req: CustomRequest, res: Response, next: NextFunction) => {
     try {
-      const token = req.headers.authorization;
+      const headerToken = req.headers.authorization;
 
-      if (!token) {
+      if (!headerToken && !req.cookies?.token) {
         throw new Error("You are not authorized!");
       }
 
-      
-      const splitToken = token.split(" ")[1] || token;
+      // Accept "Bearer <token>", a raw Authorization token, or the httpOnly cookie.
+      const splitToken =
+        headerToken?.split(" ")[1] || headerToken || req.cookies?.token;
 
       const decoded = jwt.verify(
         splitToken,

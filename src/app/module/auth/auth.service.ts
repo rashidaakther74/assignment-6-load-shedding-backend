@@ -1,7 +1,8 @@
+import { Response } from "express";
 import { prisma } from "../../lib/prisma";
 import { TLoginUser, TRegisterUser } from "./auth.interface";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
+import jwt, { JwtPayload } from "jsonwebtoken";
 import config from "../../config";
 
 const registerUserIntoDB = async (payload: TRegisterUser) => {
@@ -25,7 +26,38 @@ const registerUserIntoDB = async (payload: TRegisterUser) => {
   return result;
 };
 
-const loginUser = async (payload: TLoginUser) => {
+const getMeFromDB = async (token?: string) => {
+  if (!token) {
+    throw new Error("You are not authorized!");
+  }
+
+  const decoded = jwt.verify(
+    token,
+    config.jwt_secret_key as string
+  ) as JwtPayload;
+
+  const user = await prisma.user.findUnique({
+    where: { id: decoded.id },
+    select: { id: true, name: true, email: true, phone: true, role: true },
+  });
+
+  if (!user) {
+    throw new Error("User not found!");
+  }
+
+  return user;
+};
+
+const logoutUser = (res: Response) => {
+  res.clearCookie("token", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    path: "/",
+  });
+};
+
+const loginUser = async (payload: TLoginUser, res: Response) => {
   const user = await prisma.user.findUnique({
     where: {
       email: payload.email,
@@ -55,6 +87,13 @@ const loginUser = async (payload: TLoginUser) => {
     expiresIn: "10d",
   });
 
+  res.cookie("token", accessToken, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    maxAge: 10 * 24 * 60 * 60 * 1000, // 10 days
+  });
+
   return {
     accessToken,
   };
@@ -63,4 +102,6 @@ const loginUser = async (payload: TLoginUser) => {
 export const AuthService = {
   registerUserIntoDB,
   loginUser,
+  getMeFromDB,
+  logoutUser,
 };

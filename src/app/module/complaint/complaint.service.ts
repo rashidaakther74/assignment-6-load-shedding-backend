@@ -13,7 +13,23 @@ const getAllComplaintsFromDB = async () => {
     });
 };
 
+const updateComplaintInDB = async (id: string, payload: Partial<TCreateComplaint>) => {
+    return await prisma.complaint.update({
+        where: { id },
+        data: payload,
+        include: { user: true },
+    });
+};
+
+const deleteComplaintFromDB = async (id: string) => {
+    return await prisma.complaint.delete({
+        where: { id },
+    });
+};
+
 export const ComplaintService = {
     createComplaintIntoDB,
     getAllComplaintsFromDB,
+    updateComplaintInDB,
+    deleteComplaintFromDB,
 };
