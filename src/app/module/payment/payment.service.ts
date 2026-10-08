@@ -74,13 +74,13 @@ const handleWebhook = async (event: Stripe.Event) => {
                     trxId: trxId,
                 } as any,
                 update: {
-                    status: PaymentStatus.PAID,
+                    status: "PAID",
                 },
                 create: {
                     userId: userId,
                     trxId: trxId,
                     amount: session.amount_total ? session.amount_total / 100 : 0,
-                    status: PaymentStatus.PAID,
+                    status: "PAID",
                 } as any,
             });
         }
