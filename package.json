@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "tsx watch src/server.ts",
   "start": "node dist/server.js",
-    "build": "prisma generate && tsup src/app.ts", 
+    "build": "prisma generate && tsup src/app.ts --format cjs", 
     "postinstall": "prisma generate",
     "test": "echo \"Error: no test specified\" && exit 1",
     "stripe:webhook": "stripe listen --forward-to localhost:5000/api/v!/webhook",
