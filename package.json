@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "tsx watch src/server.ts",
   "start": "node dist/server.js",
-    "build": "prisma generate && tsup src/app.ts --format cjs", 
+   "build": "prisma generate && tsup src/app.ts", 
     "postinstall": "prisma generate",
     "test": "echo \"Error: no test specified\" && exit 1",
     "stripe:webhook": "stripe listen --forward-to localhost:5000/api/v!/webhook",
@@ -18,7 +18,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "module",
   "dependencies": {
     "@prisma/adapter-pg": "^7.10.0",
     "@prisma/client": "^7.9.1",
