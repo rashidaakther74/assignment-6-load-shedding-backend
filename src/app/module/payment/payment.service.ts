@@ -1,7 +1,6 @@
 import Stripe from "stripe";
 
 import { prisma } from "../../lib/prisma";
-import { PaymentStatus } from "@prisma/client";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
 
@@ -43,7 +42,7 @@ const createPaymentRecord = async (payload: {
             userId: payload.userId,
             amount: payload.amount,
             trxId: payload.trxId,
-            status: PaymentStatus.PAID,
+            status:"PAID"
         } as any, // 'as any' টাইপ চ্যাকিং স্কিপ করবে যাতে সাবমিশনের আগে আর কোনো ঝামেলা না হয়
     });
     return result;
