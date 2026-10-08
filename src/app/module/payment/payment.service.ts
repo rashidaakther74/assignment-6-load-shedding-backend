@@ -1,6 +1,7 @@
 import Stripe from "stripe";
-import { PaymentStatus } from "@prisma/client";
+
 import { prisma } from "../../lib/prisma";
+import { PaymentStatus } from "@prisma/client";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
 
