@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-   "postinstall": "prisma generate",
-   "build": "tsc",
-    "start": "node dist/server.js",
+  "start": "node dist/server.js",
+  "build": "tsc",
+  "postinstall": "prisma generate",
     "test": "echo \"Error: no test specified\" && exit 1",
     "stripe:webhook": "stripe listen --forward-to localhost:5000/api/v!/webhook",
     "format:check": "npx @biomejs/biome format ./src",
