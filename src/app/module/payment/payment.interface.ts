@@ -1,5 +1,4 @@
-import { PaymentStatus } from "@prisma/client";
-
+import { PaymentStatus } from "../../../generated/prisma/enums";
 
 export interface TCreatePayment {
     userId: string;

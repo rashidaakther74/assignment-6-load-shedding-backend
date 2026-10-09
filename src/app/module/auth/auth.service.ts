@@ -6,10 +6,7 @@ import jwt, { JwtPayload } from "jsonwebtoken";
 import config from "../../config";
 
 const registerUserIntoDB = async (payload: TRegisterUser) => {
- 
   const saltRounds = Number(config.bcrypt_salt_rounds) || 10;
-
-  
   const hashedPassword = await bcrypt.hash(payload.password, saltRounds);
 
   const { password, ...userData } = payload;
@@ -51,8 +48,8 @@ const getMeFromDB = async (token?: string) => {
 const logoutUser = (res: Response) => {
   res.clearCookie("token", {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
+    secure: config.node_env === "development" ? false : true,
+    sameSite: config.node_env === "development" ? "lax" : "none",
     path: "/",
   });
 };
@@ -89,8 +86,8 @@ const loginUser = async (payload: TLoginUser, res: Response) => {
 
   res.cookie("token", accessToken, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
+    secure: config.node_env === "development" ? false : true,
+    sameSite: config.node_env === "development" ? "lax" : "none",
     maxAge: 10 * 24 * 60 * 60 * 1000, // 10 days
   });
 

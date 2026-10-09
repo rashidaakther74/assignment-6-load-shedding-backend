@@ -1,4 +1,4 @@
-import { ComplaintStatus } from "@prisma/client";
+import { ComplaintStatus } from "../../../generated/prisma/enums";
 
 export interface TCreateComplaint {
     userId: string;

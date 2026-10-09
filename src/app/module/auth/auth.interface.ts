@@ -1,5 +1,6 @@
-import { Role } from "@prisma/client";
+
 import { Request } from "express";
+import { Role } from "../../../generated/prisma/enums";
 
 export interface TRegisterUser {
   name: string;
