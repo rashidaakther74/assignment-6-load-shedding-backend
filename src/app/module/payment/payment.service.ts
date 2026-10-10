@@ -1,8 +1,10 @@
 import Stripe from "stripe";
-
 import { prisma } from "../../lib/prisma";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
+
+// এখানে আপনার ফ্রন্টএন্ডের Vercel-এর আসল লাইভ লিংকটি বসান (শেষে কোনো / দেবেন না)
+const FRONTEND_URL = process.env.CLIENT_URL || "https://আপনার-প্রজেক্টের-লিংক.vercel.app";
 
 const createCheckoutSession = async (amount: number, userId: string) => {
     const session = await stripe.checkout.sessions.create({
@@ -21,9 +23,20 @@ const createCheckoutSession = async (amount: number, userId: string) => {
                 quantity: 1,
             },
         ],
-        success_url:
-            "http://localhost:3000/payment/success?session_id={CHECKOUT_SESSION_ID}",
-        cancel_url: "http://localhost:3000/payment/cancel",
+   
+        success_url: `${FRONTEND_URL}/payment/success?session_id={CHECKOUT_SESSION_ID}&amount=${amount}`,
+        cancel_url: `${FRONTEND_URL}/dashboard`,
+    });
+
+    // পেমেন্ট সেশন তৈরির সাথে সাথেই ডেটাবেসে রেকর্ড সেভ করে রাখা হচ্ছে 
+    // (যাতে Webhook ছাড়াও My Payments এবং Admin Dashboard-এ সাথে সাথে পেমেন্ট দেখায়)
+    await prisma.payment.create({
+        data: {
+            userId: userId,
+            amount: Number(amount),
+            trxId: session.id,
+            status: "PAID",
+        } as any,
     });
 
     return {
@@ -40,10 +53,10 @@ const createPaymentRecord = async (payload: {
     const result = await prisma.payment.create({
         data: {
             userId: payload.userId,
-            amount: payload.amount,
+            amount: Number(payload.amount),
             trxId: payload.trxId,
-            status:"PAID"
-        } as any, // 'as any' টাইপ চ্যাকিং স্কিপ করবে যাতে সাবমিশনের আগে আর কোনো ঝামেলা না হয়
+            status: "PAID",
+        } as any,
     });
     return result;
 };
@@ -56,7 +69,7 @@ const getAllPayments = async () => {
 
 const getMyPayments = async (userId: string) => {
     return await prisma.payment.findMany({
-        where: { userId } as any, 
+        where: { userId } as any,
         orderBy: { createdAt: "desc" },
     });
 };
