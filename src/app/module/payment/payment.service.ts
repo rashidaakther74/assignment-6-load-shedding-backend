@@ -22,8 +22,8 @@ const createCheckoutSession = async (amount: number, userId: string) => {
             },
         ],
         success_url:
-            "http://localhost:3000/payment/success?session_id={CHECKOUT_SESSION_ID}",
-        cancel_url: "http://localhost:3000/payment/cancel",
+            `${process.env.FRONTEND_URL || "http://localhost:3000"}/consumer/payments/success?session_id={CHECKOUT_SESSION_ID}&amount=${amount}&trxId={CHECKOUT_SESSION_ID}&status=success`,
+        cancel_url: `${process.env.FRONTEND_URL || "http://localhost:3000"}/consumer/payments?canceled=true`,
     });
 
     return {
