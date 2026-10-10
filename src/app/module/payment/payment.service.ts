@@ -43,13 +43,16 @@ const createPaymentRecord = async (payload: {
             amount: payload.amount,
             trxId: payload.trxId,
             status:"PAID"
-        } as any, // 'as any' টাইপ চ্যাকিং স্কিপ করবে যাতে সাবমিশনের আগে আর কোনো ঝামেলা না হয়
+        } as any,
     });
     return result;
 };
 
 const getAllPayments = async () => {
     return await prisma.payment.findMany({
+        include: {
+            user: true, 
+        },
         orderBy: { createdAt: "desc" },
     });
 };
